@@ -8,7 +8,11 @@ todo item {
 }
  */
 const inputValue = ref('');
-const todoList = ref([{ text : "vue", done : false }, { text : "react", done : false }, { text : "vercel", done : false }]);
+const todoList = ref([
+  { text: 'vue', done: false },
+  { text: 'react', done: false },
+  { text: 'vercel', done: false },
+]);
 
 console.log(inputValue.value);
 const printInputValue = () => {
@@ -16,17 +20,22 @@ const printInputValue = () => {
 };
 
 const handleClickButton = () => {
-  todoList.value.push(inputValue.value);
+  const text = inputValue.value;
+
+  todoList.value.push({
+    text: text,
+    done: false,
+  });
 };
 
 const handleChange = (event) => {
- const nextValue = event.target.value;
- inputValue.value = nextValue;
-}
+  const nextValue = event.target.value;
+  inputValue.value = nextValue;
+};
 
 const handleClickDeleteButton = (index) => {
   todoList.value.slice(index, 1);
-}
+};
 </script>
 
 <!-- html -->
@@ -35,18 +44,18 @@ const handleClickDeleteButton = (index) => {
   <p>{{ todoList }}</p>
 
   <!-- <input v-model="inputValue"/> -->
-  <input v-model="inputValue" @change="handleChange"/>
-  <button @click = "handleClickButton">확인</button>
+  <input v-model="inputValue" @change="handleChange" />
+  <button @click="handleClickButton">확인</button>
 
   <div class="todo-item" v-for="(item, idx) in todoList">
-    <input type="checkbox" v-model="item.done"/>
-    <span :class="{ 'done-item' : tiem.done }">
+    <input type="checkbox" v-model="item.done" />
+    <span :class="{ 'done-item': item.done }">
       {{ item.text }}
     </span>
 
     <div>
       <button>수정</button>
-      <button @click = "handleClickDeleteButton(idx)">삭제</button>
+      <button @click="handleClickDeleteButton(idx)">삭제</button>
     </div>
   </div>
 </template>
