@@ -1,0 +1,49 @@
+<!-- JS -->
+<script setup>
+import { ref } from 'vue';
+
+const count = ref(0);
+
+const increase = () => {
+  //count.value = count.value + 1;
+  //count.value +=1;
+  count.value++;
+}
+
+const 감소 = () => {
+  count.value--;
+}
+</script>
+
+<!-- html -->
+<template>
+  <h1>TODO LIST</h1>
+
+  <div>
+    <div>count: {{ count }} </div>
+    <button @click="increase">+</button>
+    <button @click="감소">-</button>
+
+    
+  </div>
+
+  <input/>
+  <button>확인</button>
+
+  <div class="todo-item">
+    <div>코드짜기</div>
+    <button>삭제</button>
+  </div>
+</template>
+
+<!-- css -->
+<style scoped>
+.todo-item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+}
+</style>
